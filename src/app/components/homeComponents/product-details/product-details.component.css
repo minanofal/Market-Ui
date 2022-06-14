@@ -1,0 +1,40 @@
+.img{
+    background-repeat: no-repeat, repeat;
+    background-size:100% 100%;
+    height:500px;
+    width: 300px;
+    transition: all .5s ease-in-out;
+    background-position: center;
+    background-repeat: no-repeat;
+  
+  
+}
+.subImage{
+    background-repeat: no-repeat, repeat;
+    background-size:100% 100%;
+    height:70px;
+    width: 50px;
+    transition: all .5s ease-in-out;
+    background-position: center;
+    background-repeat: no-repeat;
+    cursor: pointer;
+}
+.subImageSelected{
+    background-repeat: no-repeat, repeat;
+    background-size:100% 100%;
+    height:70px;
+    width: 50px;
+    transition: all .5s ease-in-out;
+    background-position: center;
+    background-repeat: no-repeat;
+    cursor: pointer;
+    border: solid .5px #2c3e50;
+    
+}
+.m {
+   
+
+  
+    /* referring directly to the animation's @keyframe declaration */
+    animation-duration: 3s; /* don't forget to set a duration! */
+  }

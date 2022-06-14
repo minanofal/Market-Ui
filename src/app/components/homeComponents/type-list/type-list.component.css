@@ -1,0 +1,43 @@
+.type{
+    color: aliceblue;
+    font-size: 15px;
+    text-decoration: none;
+}
+.type:hover{
+    color: rgb(84, 230, 181);
+    font-size: 19px;
+}
+.typeslected{
+    color: rgb(84, 230, 181);
+    font-size: 19px;
+    text-decoration: none;
+}
+.m {
+   
+    margin: 0 0.5rem;
+  
+    /* referring directly to the animation's @keyframe declaration */
+    animation-duration: 3s; /* don't forget to set a duration! */
+  }
+.add-btn{
+    height: 40px;
+    border-radius: 50px;
+}
+.d{
+    color: white;
+     position: relative; 
+     top:0px; left: 2px;
+}
+.d:hover{
+    color: red;
+    font-size: 19px;
+}
+.e{
+    color: white;
+     position: relative; 
+     top:0px; left: 2px;
+}
+.e:hover{
+    color: rgb(25, 159, 236);
+    font-size: 19px;
+}

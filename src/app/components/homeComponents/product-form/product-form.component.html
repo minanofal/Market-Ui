@@ -1,0 +1,165 @@
+<div class="animate__animated animate__fadeIn">
+    <div class=" m-4">
+
+        <div class="row">
+            <div class="col-1"></div>
+            <div class="col-10">
+                <div class="d-flex justify-content-between" >
+                    <h1>New Product</h1>
+                    <button  routerLink="" type="button" class="btn btn-danger"> <i class="bi bi-box-arrow-in-up-left"></i> Cancel</button>
+                </div>
+                <hr>
+            </div>
+        </div>
+       
+    </div>
+    <div class=" d-flex justify-content-between">
+       
+        <div ></div>
+    <div class=" col-4 container m-1">
+        <form [formGroup]="form"  (ngSubmit)="onSubmit()">
+            <div class="form-group">
+                <label class="form-label mt-4">Product Name</label>
+                <input type="text" 
+                class="form-control"
+                 id="name"
+                  aria-describedby="emailHelp" 
+                  placeholder="Product Name"
+                  formControlName="name"
+                  >
+                <span class="text text-danger" 
+                     *ngIf="Name?.touched && Name?.invalid">
+                        *The Name Is Required 
+                    </span>
+              </div>
+              <div class="form-group">
+                <label for="exampleInputEmail1" class="form-label mt-4">Price</label>
+                <input type="number" 
+                class="form-control" 
+                id="price" placeholder="price"
+                formControlName="price"
+                >
+                <span class="text text-danger" 
+                *ngIf="Price?.touched && Price?.invalid">
+                   *The Price Is Required 
+               </span>
+              </div>
+              <div class="form-group">
+                <label for="exampleTextarea" class="form-label mt-4">Discription</label>
+                <textarea 
+                class="form-control"
+                 id="discription"
+                  rows="4"
+                  formControlName="discription"
+                  ></textarea>
+                  <span class="text text-danger" 
+                *ngIf="Discription?.touched && Discription?.invalid">
+                   *The Discription Is Required And Min Length is 100 character 
+               </span>
+              </div>
+              <div class="form-group">
+                <label  class="form-label mt-4">Total Count </label>
+                <input 
+                type="number" 
+                class="form-control" 
+                id="totalcount" placeholder="Total Count"
+                formControlName="totalCount"
+                >
+                <span class="text text-danger" 
+                *ngIf="TotalCount?.touched && TotalCount?.invalid">
+                   *The Count Is Required
+               </span>
+              </div>
+              <div class="form-group">
+                <label for="exampleSelect1" class="form-label mt-4">Product Category</label>
+                <select class="form-select" id="categories"
+                formControlName="categories"
+                (change)="selectCategory($event)"
+                >
+                <option *ngFor="let category of categories" [value] = "category.id">{{category.name}}</option>
+                </select>
+                <span class="text text-danger" 
+                *ngIf="Categories?.touched && Categories?.invalid">
+                   *The Category Is Required
+               </span>
+              </div>
+              <div class="form-group" *ngIf="selectcategory">
+                <label for="exampleSelect1" class="form-label mt-4">Product Type</label>
+                <select class="form-select" id="type"
+                formControlName="types"
+                >
+                    <option *ngFor="let type of types" [value] = "type.id">{{type.name}}</option>
+                </select>
+                <span class="text text-danger" 
+                *ngIf="Types?.touched && Types?.invalid">
+                   *The Type Is Required
+               </span>
+              </div>
+              
+              <div class="form-group" *ngIf="selectcategory">
+                <label for="exampleSelect1" class="form-label mt-4">Product Prand</label>
+                <select class="form-select" id="companies"
+                formControlName="companies">
+                  <option *ngFor="let company of companies" [value] = "company.id">{{company.name}}</option>
+                </select>
+                <span class="text text-danger" 
+                *ngIf="Companies?.touched && Companies?.invalid">
+                   *The Prnad Is Required
+               </span>
+              </div>
+              <div class="form-group"  >
+                <label for="formFile" class="form-label mt-4">Product Images</label>
+                <div >
+                
+                    <div *ngFor = "let image of Images?.controls; last as isLast ; index as idx"  class="d-flex justify-content-between m-1">
+                        <div></div>
+                        <input formControlName="image" class="form-control" type="file" id="formFile"
+                        (change)="onFile($event , idx)"> &nbsp; &nbsp;
+                        <button 
+                        (click)="removeimage(idx)" 
+                        *ngIf="Images.length > 1" 
+                        type="button" 
+                        class="btn btn-danger">
+                        <i class="bi bi-dash-lg"></i>
+                    </button>
+                    </div>
+                    &nbsp;<button  (click)="addimage()"
+                     type="button" 
+                     class="btn btn-success">
+                     <i class="bi bi-plus-circle"></i>
+                    </button>
+                </div>
+               
+              </div>
+              <button  type="submit" class="btn btn-primary m-1" style="width: 100%;">Add Product</button>
+        </form>
+        <br> <br>
+       
+    </div>
+    <div class="col-3">
+        <div *ngIf="isShowImage" class="animate__animated animate__fadeIn m">
+        <img  class="image " src="{{showenImage[showindex]}}"> <br>
+        <button *ngIf="showindex>0" (click)="leftrow()" type="button" class="btn btn-dark" style="position: relative; top:-300px; left:-60px; width: 30px ; height: 35px;"><i class="bi bi-chevron-left" style="position: relative; left: -5px;"></i></button>
+        <button *ngIf="showindex<imagecount"  (click)="rightrow()" type="button" class="btn btn-dark" style="position: relative; top:-300px; right: -400px; width: 30px ; height: 35px;"><i class="bi bi-chevron-right" style="position: relative; left: -5px;"></i> </button>
+    </div>
+        </div>
+        
+    <hr>
+    
+    </div>
+</div>
+
+
+
+
+
+
+
+
+<!-- <div class="form-group" *ngFor="let img of images.controls ; last as isLast; index as idx" >
+    <label for="exampleInputEmail1" class="form-label mt-4">Email address</label>
+    <input formControlName="img" type="email" class="form-control" id="img" >
+    <small id="emailHelp" class="form-text text-muted">We'll never share your email with anyone else.</small>
+    <button (click)="removeimage(idx)" *ngIf="images.length > 1" type="submit" class="btn btn-primary">Submit</button>
+  </div>
+  <button (click)="addimage()" type="submit" class="btn btn-primary">Submit</button> -->

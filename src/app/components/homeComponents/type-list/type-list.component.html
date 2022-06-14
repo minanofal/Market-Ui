@@ -1,0 +1,40 @@
+<div class="card text-white bg-dark" style="max-width: 20rem; height: 680px;">
+    <div class="card-header d-flex justify-content-between"> 
+        <h2>Types</h2>
+        <button *ngIf=" rolescjeck" type="button" class="{{addForm?'btn btn-danger add-btn':'btn btn-info add-btn'}}" (click)="AddForm()" >
+            <i class="{{addForm? 'bi bi-x-circle' :'bi bi-plus-circle'}}"></i> 
+            <span *ngIf="!addForm">  Add New Type </span>
+            <span *ngIf="addForm">  Cancel </span>
+        </button>
+        
+        
+    </div>
+       <div  *ngIf="addForm && rolescjeck" class="{{displayanimation? 'animate__animated animate__fadeIn m' : 'animate__animated animate__fadeOut' }} m-2">
+        <app-type-forme (newType)="NewType($event)" [selectedCategory]="selectedCategory"></app-type-forme>
+        <hr>
+       </div>
+        <ul class=" m-1 d-flex justify-content-between row" style=" overflow-y: scroll; min-height: 100px; ">
+            
+            <li  class="col-6 mt-3 d-flex justify-content-between " style="width:max-content ;">
+                <a class="{{alltype? 'typeslected' :'type'}}" href="#" (click)="AllType()" > <i class="bi bi-front"></i>  All Types </a> 
+            </li>
+
+            <li *ngFor="let type of types" class="col-6 mt-3 d-flex justify-content-between">
+                <a class="{{Selectedid == type.id && !alltype ?'typeslected' :'type'}}" href="#" (click)="selecType(type)" >{{type.name}} </a> 
+               <i *ngIf=" rolescjeck" (click)="EditType(type)"  class="bi bi-pencil-square e" ></i>
+               <i  *ngIf=" rolescjeck" (click)="DeleteType(type)" class="bi bi-trash-fill d" ></i> 
+            </li>
+            
+            
+        </ul>
+        <div class="container">
+             <hr>
+        </div> 
+        <div   *ngIf="showEdit && rolescjeck" class="{{displayanimationEdit? 'animate__animated animate__fadeIn m' : 'animate__animated animate__fadeOut' }} m-2">
+            <app-type-edite (Cancel)="CloseEdit()" (EditType)="edittype($event)" [editType]=" editType"  [selectedCategory]="selectedCategory"></app-type-edite>
+        </div>
+        <div >
+            <app-company-list [selectedid]="selectedid" (SelectCompany)="SelectCompany($event)" (EditCompany)="oneditcompany($event)" (deleteCompany)="ondeletecompany($event)" (NewCompany)="newcompany()" [companies]="companies" [selectedCategory]="selectedCategory"></app-company-list>
+        </div>
+      
+  </div>

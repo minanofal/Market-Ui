@@ -1,0 +1,26 @@
+
+<div class="row m-1" >
+    <div class="col-3"> &nbsp; </div>
+    <div  *ngIf="showCategoryCompanantes" class="{{displayanimation? 'animate__animated animate__slideInLeft' : 'animate__animated animate__slideOutLeft'}} col-3" style="position: fixed; top: 100px;" >
+        <app-type-list [selectedid]="selectedid" (selectCompany)="SelectCompany($event)" (editCompany)="edit($event)" (deleteCompany)="delete($event)" (NewCompany)="newcompany()" (AllTypes)="AllTypes()" (selectedType)="selectType($event)" [companies] = "companies" (EditeType)="edittype($event)" (DeletedType)="deletedType($event)" (newtype)="NewType($event)" [selectedCategory] ="selectedCategory" [types]="types"></app-type-list>
+    </div>
+ 
+    <div   class="{{displayanimation? 'animate__animated animate__slideInRight col-8 ' : ' animate__animated animate__fadeIn col-10 m'}} container "  style="position: relative; top: 100px; right;">
+        <div class="d-flex justify-content-between">
+            <div></div>
+            <button  *ngIf="rolescjeck" routerLink="/productform"  type="button" class="btn btn-info add-btn"  >
+                <i class="bi bi-plus-circle"></i> 
+                <span >  Add New product </span></button>
+        </div>
+        <hr>
+        <app-product-list (deleteproduct)="Deleteproduct($event)"   [products] = "products" ></app-product-list>
+    </div>
+    <div  *ngIf="showCompanyForm &&  rolescjeck" class="{{showCompanyAnimation?'animate__animated animate__slideInLeft':'animate__animated animate__slideOutLeft'}}" style="position: fixed; top: -300px;">
+        <app-company-form (submitNewCompany)="submitNewCompany($event)"  (Cancel)="newcompany()" [selectedCategory] ="selectedCategory" [types]="types" style="position: fixed; top: 500px;" ></app-company-form>
+    </div>
+    <div *ngIf="showCompanyEditForm &&  rolescjeck" class="{{showCompanyEditAnimation?'animate__animated animate__slideInLeft':'animate__animated animate__slideOutLeft'}}">
+        <app-company-edit (Cancel)="cancelEdit()"  [editedCompnayUnSelectedTypes] ="editedCompnayUnSelectedTypes" [editedCompnaySelectedTypes]="editedCompnaySelectedTypes" [selectedCategory] ="selectedCategory" [EditedCompany]="EditedCompany" style="position: fixed; top: -500px; "></app-company-edit>
+    </div>
+</div>
+<app-navbar  (Home)="home()" (SelectedCategory)="selectedcategory($event)"  [categories]="categories" (newCategory)="addNewCategory($event)" (DeleteCategory)="deletcategory($event)"></app-navbar>
+

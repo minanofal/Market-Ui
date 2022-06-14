@@ -1,0 +1,50 @@
+<div class="container">
+    <div class="d-flex justify-content-between ">
+        <div>
+            <h3>Onlin Market</h3>
+        </div>
+        <div class="mt-2">
+            <button routerLink="/register" type="button" class="btn btn-primary" style="width: 80px;">Register</button>
+        </div>
+       
+    </div>
+   
+    <hr>
+    <div class="row ">
+        <div class="col-3"></div>
+        <div class="col-6">
+            <div class="card text-white bg-primary mt-5" style="max-width: 120rem;">
+                <div class="card-header"><h3>Login</h3></div>
+                <div class="card-body">
+                    <form [formGroup]="form" (ngSubmit)="onSubmit()">
+                        <span class="text text-danger" *ngIf="!isvalid"  >
+                           {{errorMessage}}
+                           </span>
+                        <fieldset>
+                            <div class="form-group">
+                                <label for="exampleInputEmail1" class="form-label mt-2">Email address</label>
+                                <input formControlName="email" type="email" class="form-control"  placeholder="Enter email">
+                                 
+                                <span class="text text-danger" *ngIf="Email?.touched &&Email?.invalid"  >
+                                   *please enter Email Like "a....@....com"
+                                  </span>
+                              </div>
+                            
+                              <div class="form-group">
+                                <label  class="form-label mt-2">Password</label>
+                                <input formControlName="password" type="password" class="form-control"  placeholder="Password">
+                                <span class="text text-danger" *ngIf="Password?.touched &&Password?.invalid"  >
+                                    *password Required
+                                   </span>
+                              </div>
+                              
+                              <br>
+                              <button [disabled]="form.invalid" type="submit" class="btn btn-secondary" style=" width:100%; font-size: 20px;">Login</button>
+                        </fieldset> 
+                    </form>
+                
+                </div>
+        </div>
+        <div class="col-3"></div>
+    </div>
+</div>

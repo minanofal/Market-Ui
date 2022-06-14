@@ -1,0 +1,56 @@
+<nav class="navbar navbar-expand-lg navbar-dark bg-primary n" >
+    <div class="container-fluid">
+      <a class="navbar-brand" href="#">Online Market</a>
+     
+  
+      <div class="collapse navbar-collapse" id="navbarColor01" style="overflow-x: scroll; overflow-y: hidden;">
+        <ul class="navbar-nav me-auto"  >
+          <li class="nav-item" >
+            <a class="nav-link " href="#" (click)="home()">
+              <div class="d-flex justify-content-between animate__animated animate__fadeIn m">
+              <div class="logo" style="text-align: center; background-image: url('../../../../assets/home-family-house-icon-home-icon-ios-11553392707bgapvjo9ic.png');"></div> &nbsp;&nbsp;
+              <div  class="m-1" >
+                Home
+              </div>
+              
+            </div>
+              
+            </a>
+          </li>
+          <li *ngFor="let category of categories" class="nav-item animate__animated animate__fadeIn m" style="width: max-content;">
+            <div class="d-flex justify-content-between " style="border-left: solid white .5px; height: 40px;">
+              <a class="nav-link " href="#" (click)="selectCategory(category)">
+                <div class="d-flex justify-content-between " >
+                  &nbsp; &nbsp; &nbsp;
+                  <div *ngIf="category.logo" class="logo " style="text-align: center; background-image: url(data:image\/*;base64,{{category.logo}});"></div> &nbsp;&nbsp;
+                  <div class="m-1" >
+                    {{category.name}}
+                  </div> 
+                
+              </div>
+            </a>
+            <i *ngIf=" rolescjeck" (click)="Editcategory(category)" class="bi bi-pencil-square m-1 e" ></i>
+            <i *ngIf=" rolescjeck" (click)="openDialog(category)" class="bi bi-trash-fill m-1 d" ></i>  &nbsp;  
+          </div>
+          </li>
+          &nbsp;&nbsp;
+         
+           
+         
+          
+        </ul>
+        
+     
+      </div>
+      <button *ngIf=" rolescjeck" type="button" (click)="addButton()" class="{{displayanimation? 'btn btn-danger add-btn' :'btn btn-info add-btn'}} animate__animated animate__fadeIn m butt">
+        <i class="{{ displayanimation? 'bi bi-x-circle':'bi bi-plus-circle' }}"></i>
+         <span *ngIf="!displayanimation"> Add Category</span>
+         <span *ngIf="displayanimation"> cancel</span></button>
+         
+      <a class="nav-link animate__animated animate__fadeIn m logout" (click)="logOut()">Logout</a>
+    </div>
+  </nav>
+
+ 
+  <app-category-form class="{{displayanimation? 'animate__animated animate__fadeIn' : 'animate__animated animate__fadeOut' }} m-4"   *ngIf="showButton && rolescjeck" (onAddCategory) = "addCategory($event)"  style="position:fixed ;  top: 60px ; width: 1400px; right: 50px;"></app-category-form>
+  <app-category-edit class="{{dispalyEdite? 'animate__animated animate__fadeIn' : 'animate__animated animate__fadeOut' }}" (onEditCategory)="EditedCategory()" *ngIf="showEditForm && rolescjeck" [category]="EditCategory"  style="position:fixed ;  top: 80px ; width: 1400px; right: 30px;"></app-category-edit>

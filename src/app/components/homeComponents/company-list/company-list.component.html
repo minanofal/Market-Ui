@@ -1,0 +1,28 @@
+<div class=" m-4 d-flex justify-content-between"> 
+    <h2>Brands</h2>
+    <button *ngIf=" rolescjeck" (click)="newCompany()"  type="button" class="btn btn-info add-btn d-flex justify-content-between"  >
+        <i class="bi bi-plus-circle" ></i> 
+        <span >  Add New Brand </span>
+    </button>
+     
+    </div>
+    <div class="container">
+        <hr >
+    </div>
+   
+    <div style="overflow-y: scroll; min-height: 360px ;">
+        <ul class=" m-1  d-flex justify-content-between row">
+            <li *ngFor="let company of companies"  class="col-6 mt-3 d-flex justify-content-between">
+               <div  class="mt-1 d-flex justify-content-between">
+                <a class="{{ selectedid == company.id? 'typeslected':'type' }} animate__animated animate__bounceIn" href="#" (click)="slectCompany(company)">
+                    <div *ngIf="company.image" class="logo " style="text-align: center; background-image: url(data:image\/*;base64,{{company.image}});"></div> &nbsp;&nbsp;
+                   <span style="position: relative; top:5px; left: -5px;">{{company.name}}</span>  </a> 
+                <i *ngIf=" rolescjeck" (click)="onEdit(company)"class="bi bi-pencil-square e" ></i>
+                <i *ngIf=" rolescjeck" (click)="ondelete(company)" class="bi bi-trash-fill d" ></i> 
+               </div>
+            </li>    
+        
+        </ul>
+    </div>
+   
+

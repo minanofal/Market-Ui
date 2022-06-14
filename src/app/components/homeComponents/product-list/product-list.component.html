@@ -1,0 +1,48 @@
+<div   class="d-flex flex-wrap align-content-around">
+    
+    <div *ngFor="let product of products"  class="card border-secondary m-3 col-4 " style="max-width: 16rem; text-align: center;">
+    <div class="card-header d-flex justify-content-between">
+        <h3>{{product.name}}</h3>  
+        <div>
+            <button *ngIf="rolescjeck" (click) = "deleteProduct(product)" type="button" class="btn btn-danger" style="width: 30px; height: 30px;">
+                <i class="bi bi-trash-fill" style="position: relative; left: -6px ; top: -2px;"></i>
+            </button>
+            &nbsp;
+            <button *ngIf="rolescjeck" routerLink="/Editproduct/{{product.id}}"  type="button" class="btn btn-success" style="width: 30px; height: 30px;">
+                <i class="bi bi-pencil-square" style="position: relative; left: -6px ; top: -2px;"></i>
+            </button>
+        </div>
+      
+    </div>
+    <div class="card-body">
+        <div style="text-align: center;" > 
+          
+            <div  class="image" style="text-align: center; background-image: url(data:image\/*;base64,{{product.productImages[product.countimage].image}});">
+                <button *ngIf="product.productImages.length>1" (click)="leftrow(product)" type="button" class="btn btn-dark" style="position: relative; top:180px; left: -80px; width: 30px ; height: 35px;"><i class="bi bi-chevron-left" style="position: relative; left: -5px;"></i></button>
+                <button *ngIf="product.productImages.length>1" (click)="rightrow(product)" type="button" class="btn btn-dark" style="position: relative; top:180px; right: -90px; width: 30px ; height: 35px;"><i class="bi bi-chevron-right" style="position: relative; left: -5px;"></i> </button>
+            </div> 
+ 
+        </div>
+        <hr>
+        <div style=" text-align: left;">
+         
+
+            <p *ngIf="product.description.length>=140" style="  text-align: justify; font-size: 12px;  ">{{
+                product.description.substring(0,140)}}...
+                <a   style="color: rgb(184, 184, 252);" routerLink="/productDetailes/{{product.id}}"> read more</a>
+            </p>
+            <p *ngIf="product.description.length<140" style="  text-align: justify; font-size: 12px;  ">{{
+                product.description}}...
+                   
+                    <a   style="color: rgb(184, 184, 252);"  routerLink="/productDetailes/{{product.id}}"> read more</a>
+                </p>
+            <hr>
+            <div class="d-flex justify-content-between">
+                <span><i class="bi bi-tag-fill"></i> {{product.category}}</span>
+                <span>{{product.type}}</span><span>{{product.company}}</span>
+            </div>
+      </div>
+    </div>
+  </div>   
+
+</div>

@@ -1,0 +1,69 @@
+<div class="card text-white bg-secondary m-3" style="width: 50rem;">
+    <div class="card-header d-flex justify-content-between">
+        <span>  New company </span>
+       
+        <button (click)="cancel()" type="button" class="btn btn-danger"> <i class="bi bi-x-circle"></i> Cancel</button>
+    </div>
+    <h3 class="m-2">* Note This Company will Create with Category {{selectedCategory.name}} </h3>
+    <div>
+
+        <form class="container mt-1" [formGroup]="form"  (ngSubmit)="onSubmit()">
+            <div class="d-flex justify-content-between">
+                <div class="col-8">
+            <div class="form-group">
+                <label for="exampleInputEmail1" class="form-label mt-4">Company Name :</label>
+                <input type="text" 
+                class="form-control" 
+                id="name"
+                formControlName="name"
+                 placeholder="Enter company name">
+                 <span class="text text-danger" 
+                 *ngIf="Name?.touched && Name?.invalid">
+                    *The Name Is Required 
+                </span>
+              </div>
+              <label for="exampleInputEmail1" class="form-label mt-4">Types :</label>
+              <div class="d-flex justify-content-between">
+                <div  *ngFor="let type of types" >
+                    <input formControlName="image" 
+                    id="type" name="type"   
+                    class="form-check-input" 
+                    type="checkbox" 
+                    (click)="typeselect(type)" >
+                    <label class="form-check-label" 
+                    for="flexCheckChecked">
+                     {{type.name}}
+                    </label>
+                </div>
+              </div>
+               
+              
+              
+              <div class="form-group">
+                <label  for="formFile" class="form-label mt-4">Image</label>
+                <input class="form-control"
+                 type="file" 
+                 id="image"
+                accept=".jpg , .png , .peng"
+                formControlName="image"
+                (change)="onFile($event)"
+                 >
+              </div>
+              </div>
+              <div class="col-4 m-4" style="position: relative; left: 50px;">
+                <img *ngIf="showicone" class="logo" src="{{icone}}"> <br>
+                  <span style="font-size: 20px;"> {{this.form.getRawValue()['name']}}</span>
+               
+               
+              </div>
+              </div>
+             
+              <div class="m-3">
+                <button [disabled] = "form.invalid" type="submit" class="btn btn-primary" style="width: 100%;"> <i class="bi bi-plus-circle"></i> Add</button>     
+              </div>
+             
+        </form>
+        <br>
+    </div>
+  
+    

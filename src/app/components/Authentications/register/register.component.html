@@ -1,0 +1,79 @@
+<div class="container">
+    <div class="d-flex justify-content-between ">
+        <div>
+            <h3>Onlin Market</h3>
+        </div>
+        <div class="mt-2">
+            <button routerLink="/login" type="button" class="btn btn-primary" style="width: 80px;">Login</button>
+        </div>
+    </div>
+   
+    <hr>
+    <div class="row">
+        <div class="col-3"></div>
+        <div class="col-6">
+            <div class="card text-white bg-primary mb-2" style="max-width: 120rem;">
+                <div class="card-header"><h3>Register</h3></div>
+                <div class="card-body">
+                    <form [formGroup]="form" (ngSubmit)="onSubmit()">
+                        <fieldset>
+                            <div class="form-group">
+                                <label for="exampleInputEmail1" class="form-label mt-2">Email address</label>
+                                
+                                <input formControlName="email" type="email" class="form-control"  placeholder="Enter email">
+                                 
+                                 <span class="text text-danger" *ngIf="Email?.touched &&Email?.invalid"  >
+                                    *please enter Email Like "a....@....com"
+                                   </span>
+                                   <span class="text text-danger" *ngIf="!isvalid"  >
+                                    {{auth.email}}
+                                   </span>
+                              </div>
+                              <div class="form-group">
+                                <label  class="form-label mt-2">First Name</label>
+                                <input formControlName="firstName" type="text" class="form-control" aria-describedby="emailHelp" placeholder="First Name">
+                                <span class="text text-danger" *ngIf="FirstName?.touched &&FirstName?.invalid"  >
+                                    *First Name is Required
+                                   </span>
+                              </div>
+                              <div class="form-group">
+                                <label  class="form-label mt-2">Last Name</label>
+                                <input formControlName="lastName" type="text" class="form-control" aria-describedby="emailHelp" placeholder="Enter email">
+                                <span class="text text-danger" *ngIf="LastName?.touched &&LastName?.invalid"  >
+                                    *Last Name is Required
+                                   </span>
+                              </div>
+                              <div class="form-group">
+                                <label  class="form-label mt-2">User Name</label>
+                                <input formControlName="userName" type="text" class="form-control"   placeholder="Enter User Name">
+                                <span class="text text-danger" *ngIf="UserName?.touched &&UserName?.invalid"  >
+                                    *User Name is Required
+                                   </span>
+                                   <span class="text text-danger" *ngIf="!isvalid"  >
+                                    {{auth.userName}}
+                                   </span>
+                              </div>
+                              <div class="form-group">
+                                <label  class="form-label mt-2">Password</label>
+                                <input formControlName="password" type="password" class="form-control"  placeholder="Password">
+                                <span class="text text-danger" *ngIf="Password?.touched &&Password?.invalid"  >
+                                    *password must be  At least 8 characters in length , Uppercase letters, Lowercase letters,Numbers Special characters
+                                   </span>
+                              </div>
+                              <div class="form-group">
+                                <label for="exampleInputPassword1" class="form-label mt-2">Confirm Password</label>
+                                <input formControlName="confirmPassword" type="password" class="form-control"  placeholder="Password">
+                                <span class="text text-danger" *ngIf="ConfirmPassword"  >
+                                    *password not match
+                                   </span>
+                              </div>
+                              <br>
+                              <button [disabled]="form.invalid" type="submit" class="btn btn-secondary" style="width:100%; font-size: 20px;">Sign Up</button>
+                        </fieldset>
+                    </form>
+                
+                </div>
+        </div>
+        <div class="col-3"></div>
+    </div>
+</div>

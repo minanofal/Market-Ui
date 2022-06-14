@@ -1,0 +1,27 @@
+<form [formGroup]="form" (ngSubmit)="onSubmit()">
+    <div class="row">
+        <div class="form-group col-9">
+            <div class="d-flex justify-content-between">
+                <label for="exampleInputEmail1" class="form-label mt-4">Type Name :</label>
+                <button type="button" (click)="cancel()" class="btn btn-danger" style="height: 35px; height: 35px; position: relative; top: 5px; left: 70px;"><i class="bi bi-x-circle"></i></button>
+            </div>
+            
+            <input type="text"
+             class="form-control"
+             id="name"
+             name="type.name"
+            [(ngModel)]="editType.name"
+            formControlName="name"
+            placeholder="Enter type Name">
+            <span class="text text-danger" *ngIf="Name?.touched && Name?.invalid">
+                *The Name Is Required 
+            </span>
+          </div>
+          <div class="col-3 mt-4" style="position: relative; top:8px; right: 15px;;">
+              <br>
+            <button [disabled] = "form.invalid" type="submit" class="btn btn-success" style="font-size: 14px; width: 75px ; height: 40px; ">  <i class="bi bi-card-list"></i> Save </button>
+          </div>
+    </div>
+    <br>
+    <small  style="font-size: 13px ;"> Note: This Type in Category {{selectedCategory.name}}</small>
+</form>
